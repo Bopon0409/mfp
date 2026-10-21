@@ -1,0 +1,72 @@
+/* Shared geometry for classic/new themes; only application chrome, never canvas content. */
+:root {
+  --ui-radius-control: 6px;
+  --ui-radius-card: 8px;
+  --ui-radius-window: 12px;
+}
+
+/* Style the actual popup, not only the closed field. Unsupported engines keep native selects. */
+@supports (appearance: base-select) {
+  :root select:not([multiple]):not([size]),
+  :root select:not([multiple]):not([size])::picker(select) {
+    appearance: base-select;
+  }
+  :root select:not([multiple]):not([size])::picker(select) {
+    border: 1px solid var(--border);
+    border-radius: var(--ui-radius-card);
+    padding: 4px;
+    margin-block: 4px;
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: 0 8px 24px #0004;
+    max-height: min(360px, 70vh);
+    overflow: auto;
+  }
+  :root select:not([multiple]):not([size]) option {
+    border-radius: var(--ui-radius-control);
+    padding: 6px 8px;
+    min-height: 28px;
+  }
+  /* The dropdown arrow is a small chevron, not a large “▼”. */
+  :root select:not([multiple]):not([size])::picker-icon {
+    content: '';
+    flex: none;
+    width: 5px;
+    height: 5px;
+    margin-inline: auto 3px;
+    margin-block: auto;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    color: var(--muted);
+    transform: translateY(-1px) rotate(45deg);
+  }
+  :root select:not([multiple]):not([size]) option:checked { background: var(--accent-soft); }
+  :root select:not([multiple]):not([size]) option:hover { background: var(--panel-3); }
+}
+:root, :root[data-ui='new']:not([data-contrast]) {
+:is(.modal, .var-window, .cmp-box, .sc-card, .ai-win, .preview-win,
+  .plugin-panel, .popover, .paint-editor, .font-picker, .float-panel, .fonts-dialog,
+  .cthread, .cmention-pop, .menu) {
+  border-radius: var(--ui-radius-window);
+}
+/* Headers/footers with their own background must respect the outer silhouette. */
+:is(.modal-head, .var-head, .ai-head, .cmp-head, .plugin-title, .pe-head, .cthread-head) {
+  border-top-left-radius: var(--ui-radius-window);
+  border-top-right-radius: var(--ui-radius-window);
+}
+:is(.modal-foot, .act-foot) {
+  border-bottom-left-radius: var(--ui-radius-window);
+  border-bottom-right-radius: var(--ui-radius-window);
+}
+:is(.field, .m-input, .m-select, .pe-stop-rows input, .proto-row-main,
+  .style-applied, .comp-pick, .keys-btn, .pe-btn) {
+  border-radius: var(--ui-radius-control);
+}
+:is(.row, .asset-row, .style-item, .keys-row, .lib-update-row:not(.head), .merge-screen) {
+  border-radius: var(--ui-radius-control);
+}
+:is(.var-comp-cell, .home-card, .branch-here) {
+  border-radius: var(--ui-radius-card);
+}
+
+}

@@ -1,0 +1,29 @@
+node_modules/
+dist/
+.vite/
+*.log
+.DS_Store
+Thumbs.db
+
+# Test design files: large and private, kept out of git
+fixtures/**/*.fig
+fixtures/**/*.zip
+# Fixture parsing and rendering output
+fixtures/out/
+# Collaboration server rooms
+rooms/
+
+# Desktop (Tauri): build output and generated files
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/gen/
+# Office server for the installer (scripts/build-office.ts)
+apps/desktop/src-tauri/office/
+
+
+# Self-host settings (passwords)
+.env
+backups/
+private/
+
+# Windows shortcuts (contain the computer name, local paths and the network card address)
+*.lnk

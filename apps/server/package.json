@@ -1,0 +1,23 @@
+{
+  "name": "@mfp/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.ts"
+  },
+  "dependencies": {
+    "@mfp/cli": "*",
+    "@mfp/core": "*",
+    "@mfp/sync": "*",
+    "loro-crdt": "^1.16.4",
+    "pg": "^8.23.1",
+    "sharp": "^0.35.5",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@types/pg": "^8.23.1",
+    "@types/ws": "^8.18.2"
+  }
+}

@@ -1,0 +1,993 @@
+/*
+ * The new interface look — from the design file design/interface.mfp (built in the editor itself).
+ * A layer over the classic styles of index.html: applies only with html[data-ui="new"]
+ * (Menu → View → Appearance); with high contrast — the classic look. Markup and code are shared,
+ * so both looks have the same features; switching back to classic is one menu item.
+ *
+ * Colors and sizes are tokens.css variables (npm run design:tokens); this file only applies them.
+ */
+
+:root[data-ui='new']:not([data-contrast]) {
+  font: 12px/16px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+  --shadow-pop: 0 0 0 1px var(--border), 0 2px 6px #05080f47, 0 12px 32px #05080f66;
+  --shadow-bar: 0 0 0 1px var(--border), 0 1px 3px #05080f40, 0 8px 24px #05080f59;
+  --focus-ring: 0 0 0 3px var(--accent-soft);
+  --swatch-edge: inset 0 0 0 1px #ffffff29;
+  --backdrop: #05080f80;
+  --checker-a: #2b2e34;
+  --checker-b: #22242a;
+}
+:root[data-ui='new'][data-theme='light']:not([data-contrast]) {
+  color-scheme: light;
+  --shadow-pop: 0 0 0 1px var(--border), 0 2px 6px #1018280f, 0 12px 32px #10182824;
+  --shadow-bar: 0 0 0 1px var(--border), 0 1px 3px #1018280f, 0 8px 24px #1018281f;
+  --swatch-edge: inset 0 0 0 1px #10182824;
+  --backdrop: #10182847;
+  --checker-a: #e9ebef;
+  --checker-b: #f9fafc;
+}
+
+:root[data-ui='new']:not([data-contrast]) {
+  /* ---------- Base ---------- */
+  html&,
+  & body {
+    background: var(--bg);
+  }
+  & * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--panel-3) transparent;
+  }
+  & ::selection {
+    background: var(--accent-soft);
+  }
+  .field input,
+  .zoom-btn,
+  .dv-val,
+  .pe-slider span:last-child,
+  .size-badge,
+  .tl-time {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- File tabs (desktop) ---------- */
+  #filetabs {
+    background: var(--bg);
+    padding: 0 8px;
+  }
+  .ftab,
+  .ftab-home,
+  .ftab-plus {
+    border-radius: 8px 8px 0 0;
+    color: var(--muted);
+  }
+  .ftab:hover,
+  .ftab-home:hover,
+  .ftab-plus:hover {
+    background: var(--panel-2);
+    color: var(--text);
+  }
+  .ftab.on,
+  .ftab-home.on {
+    background: var(--panel);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .ftab-close {
+    border-radius: 5px;
+  }
+  .ftab-close:hover {
+    background: var(--panel-3);
+  }
+
+  /* ---------- Side panels ---------- */
+  & aside {
+    background: var(--panel);
+  }
+  #left {
+    border-right: 1px solid var(--line);
+  }
+  #right {
+    border-left: 1px solid var(--line);
+  }
+  .side-head {
+    height: 48px;
+    border-bottom-color: var(--line);
+    gap: 6px;
+  }
+  .side-head.file-head {
+    height: auto;
+    min-height: 56px;
+    gap: 0;
+  }
+  .rail {
+    background: var(--panel);
+    border-right-color: var(--line);
+  }
+  .rail-btn .rail-ic,
+  #home-btn {
+    border-radius: 8px;
+  }
+  .rail-btn.on .rail-ic {
+    background: var(--panel-2);
+    box-shadow: inset 0 0 0 1px var(--border);
+  }
+  .logo-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+  }
+  .logo-btn:hover,
+  .logo-btn.open {
+    background: var(--panel-2);
+  }
+  .logo-btn .ic {
+    width: 28px;
+    height: 28px;
+  }
+  .file-name {
+    font-size: 13px;
+    line-height: 18px;
+    border-radius: 6px;
+  }
+  .file-name:hover {
+    background: var(--panel-2);
+  }
+  .file-name input {
+    background: var(--panel-2);
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+  }
+
+  /* Panel tabs: segments on a field backdrop; the active one is a raised chip. */
+  .tabs {
+    height: 44px;
+    border-bottom-color: var(--line);
+    padding: 0 8px 0 12px;
+  }
+  .tabs .tab-group {
+    background: var(--panel-2);
+    border-radius: 7px;
+    padding: 2px;
+    gap: 2px;
+  }
+  .tabs .tab,
+  .tabs .tab:first-child {
+    margin-left: 0;
+    height: 24px;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .tabs .tab:hover {
+    color: var(--text);
+  }
+  .tabs .tab.on {
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: 0 0 0 1px var(--border);
+  }
+  .left-tabs {
+    gap: 2px;
+    padding: 8px 12px;
+    border-bottom-color: var(--line);
+  }
+  .left-tab {
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .left-tab:hover {
+    color: var(--text);
+    background: var(--panel-2);
+  }
+  .left-tab.on {
+    background: var(--panel-2);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--border);
+  }
+  .zoom-btn {
+    border-radius: 6px;
+    color: var(--text-2);
+  }
+  .zoom-btn:hover,
+  .zoom-btn.open {
+    background: var(--panel-2);
+  }
+
+  /* Sections: a 12 Semi Bold title, actions on the right. */
+  .section {
+    border-bottom-color: var(--line);
+    padding: 6px 0 12px;
+  }
+  .section h3 {
+    font-size: 12px;
+    line-height: 16px;
+    min-height: 32px;
+    padding: 0 8px 0 12px;
+    color: var(--text);
+  }
+  #left .section h3 {
+    color: var(--text);
+  }
+  .section h3 button {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    color: var(--text-2);
+  }
+  .section h3 button:hover {
+    background: var(--panel-2);
+    color: var(--text);
+  }
+  .section h3 button.on {
+    color: var(--accent-text);
+    background: var(--accent-soft);
+  }
+
+  /* Page and layer rows: rounded, inset from the panel edges. */
+  .row {
+    margin: 0 6px;
+    border-radius: 6px;
+    color: var(--text-2);
+  }
+  .row:hover {
+    background: var(--panel-2);
+    color: var(--text);
+  }
+  .row.selected {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+  .page-row {
+    padding-left: 10px;
+  }
+  .page-row.in-folder {
+    padding-left: 28px;
+  }
+  /* The selected page is a chip, without a check mark. */
+  .page-row.selected {
+    background: var(--panel-2);
+    font-weight: 500;
+  }
+  .page-row.selected:hover {
+    background: var(--panel-3);
+  }
+  .row .act {
+    border-radius: 5px;
+  }
+  .row .act:hover {
+    background: var(--panel-3);
+  }
+  .row.drop-into {
+    outline-color: var(--accent);
+  }
+  /* The drop line while dragging a layer has the same inset as the rows. */
+  #layers-drop {
+    margin-left: 6px;
+    right: 6px;
+    border-radius: 1px;
+  }
+  .asset-row,
+  .style-item,
+  .var-coll {
+    border-radius: 6px;
+    margin: 0 6px;
+  }
+  .asset-row:hover,
+  .style-item:hover,
+  .var-coll:hover {
+    background: var(--panel-2);
+  }
+
+  /* ---------- Properties ---------- */
+  .sel-head {
+    padding: 12px 12px 8px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .props {
+    padding: 0 12px;
+  }
+  .field {
+    height: 28px;
+    border-radius: 6px;
+    background: var(--panel-2);
+  }
+  .field:hover {
+    border-color: var(--border);
+  }
+  .field:focus-within {
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+  }
+  .field label {
+    min-width: 20px;
+  }
+  /* The sizing mode (“fill”, “hug”) is smaller: the number in the field needs room. */
+  .field .size-tag,
+  .field .unit {
+    font-size: 11px;
+  }
+  .field .size-menu {
+    background: var(--panel-2);
+    border-radius: 5px;
+  }
+  .field .size-menu:hover,
+  .field .size-menu.open {
+    background: var(--panel-3);
+  }
+  .swatch,
+  .dv-swatch,
+  .pe-strip,
+  .swatch-prev,
+  .var-swatch,
+  .cp-swatch {
+    box-shadow: var(--swatch-edge);
+  }
+  .swatch {
+    border-radius: 4px;
+  }
+  .seg {
+    background: var(--panel-2);
+    border-radius: 7px;
+  }
+  .seg button {
+    border-radius: 5px;
+  }
+  .seg button.on {
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: 0 0 0 1px var(--border);
+  }
+  .icon-btn {
+    border-radius: 6px;
+  }
+  .icon-btn:hover {
+    background: var(--panel-2);
+  }
+  .icon-btn.on {
+    color: var(--accent-text);
+    background: var(--accent-soft);
+  }
+  .align-grid {
+    background: var(--panel-2);
+    border-radius: 7px;
+  }
+  .align-grid button.on::after {
+    border-radius: 3px;
+  }
+  .export-btn,
+  .proto-dir,
+  .ot {
+    border-color: var(--border);
+    border-radius: 6px;
+  }
+  .ot {
+    border-radius: 12px;
+  }
+  .link-btn,
+  .dv-link,
+  .proto-add,
+  .m-link,
+  .ann-text-view a {
+    color: var(--accent-text);
+  }
+  .toggle {
+    background: var(--panel-3);
+  }
+  .toggle::after {
+    background: #fff;
+    box-shadow: 0 1px 2px #0003;
+  }
+  .toggle.on {
+    background: var(--accent);
+  }
+  .comp-pick,
+  .style-applied,
+  textarea.desc,
+  .track-row .track,
+  .axis-num,
+  .pop-search,
+  .m-input,
+  .m-select,
+  .font-picker input,
+  .cfield,
+  .cpanel-search {
+    border-radius: 6px;
+  }
+  .comp-pick:hover,
+  .comp-pick.open,
+  .style-applied:hover {
+    border-color: var(--border);
+  }
+  .pop-search:focus,
+  .m-input:focus,
+  .m-select:focus,
+  .font-picker input:focus,
+  textarea.desc:focus,
+  .cfield:focus,
+  .cpanel-search:focus,
+  .axis-num:focus,
+  .track-row .track:focus {
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+  }
+  .var-pill {
+    background: var(--panel-3);
+    border-radius: 5px;
+  }
+  .var-pill:hover,
+  .var-pill.open {
+    background: var(--border);
+  }
+  .var-pill .var-ic,
+  .var-val.expr,
+  input.expr {
+    color: var(--component);
+  }
+  .var-pill.missing,
+  .proto-error,
+  .ai-tool.err,
+  .ai-error,
+  .m-error,
+  .m-btn.danger,
+  #actions .act-error {
+    color: var(--danger);
+  }
+  .def-sub.warn {
+    color: var(--warning);
+  }
+  .proto-row-main {
+    background: var(--panel-2);
+    border-radius: 6px;
+  }
+  .proto-row-main:hover,
+  .proto-row-main.open {
+    border-color: var(--border);
+  }
+  .proto-dir.on {
+    border-color: var(--accent);
+    color: var(--accent-text);
+    background: var(--accent-soft);
+  }
+  .proto-branch {
+    border-left-color: var(--border);
+  }
+  .page-divider .divider-line {
+    background: var(--border);
+  }
+
+  /* ---------- Buttons ---------- */
+  .share-btn {
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 500;
+  }
+  .share-btn:hover {
+    background: var(--accent-2);
+  }
+  .share-btn.live {
+    background: var(--dev);
+  }
+  .present-btn {
+    border-radius: 6px;
+    color: var(--text-2);
+  }
+  .present-btn:hover {
+    background: var(--panel-2);
+    color: var(--text);
+  }
+  .home-btn,
+  .cbtn,
+  .m-btn,
+  .pe-btn,
+  .fp-btn,
+  .tl-btn,
+  .version-banner button {
+    border-radius: 6px;
+    border-color: var(--border);
+    font-weight: 500;
+  }
+  .home-btn.primary,
+  .cbtn.primary,
+  .m-btn.primary,
+  .pe-btn.primary,
+  .float-panel .fp-btn.primary,
+  .version-banner button.primary,
+  .ai-send,
+  .ai-save {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+    font-weight: 500;
+  }
+  .home-btn.primary:hover,
+  .cbtn.primary:hover,
+  .m-btn.primary:hover,
+  .pe-btn.primary:hover {
+    background: var(--accent-2);
+    border-color: var(--accent-2);
+  }
+  .cbtn.danger,
+  .ai-send.stop {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+  }
+
+  /* ---------- Canvas: toolbar, labels ---------- */
+  #toolbar {
+    bottom: 16px;
+    padding: 6px;
+    gap: 2px;
+    border-radius: 14px;
+    background: var(--menu);
+    box-shadow: var(--shadow-bar);
+  }
+  .tbtn {
+    color: var(--text-2);
+    border-radius: 8px;
+  }
+  .tbtn .ic {
+    width: 20px;
+    height: 20px;
+  }
+  .tgroup {
+    border-radius: 8px;
+  }
+  .tgroup:hover,
+  .tbtn:hover {
+    background: var(--panel-2);
+    color: var(--text);
+  }
+  .tgroup.active,
+  .tgroup.active:hover {
+    background: var(--accent);
+  }
+  .tgroup.active .tbtn,
+  .tgroup.active .tmore {
+    color: var(--on-accent);
+  }
+  .tmore {
+    color: var(--muted);
+  }
+  .tsep {
+    background: var(--border);
+    height: 20px;
+  }
+  .tbtn.dev-toggle.on {
+    background: var(--dev);
+    color: #fff;
+  }
+  .help-btn {
+    background: var(--menu);
+    color: var(--text-2);
+    box-shadow: var(--shadow-bar);
+  }
+  #stage.narrow .help-btn {
+    bottom: 72px;
+  }
+  .size-badge {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  .size-badge.component {
+    background: var(--component);
+  }
+  .flow-badge {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: 5px;
+  }
+  .proto-away {
+    background: var(--menu);
+    border-color: var(--accent);
+    color: var(--accent-text);
+    border-radius: 5px;
+  }
+  .missing-fonts {
+    background: var(--menu);
+    color: var(--danger);
+    box-shadow: var(--shadow-bar);
+  }
+  .missing-fonts:hover {
+    background: var(--panel-2);
+  }
+  .lib-updates {
+    background: var(--accent);
+    color: var(--on-accent);
+    box-shadow: var(--shadow-bar);
+  }
+  .ruler-corner {
+    background: var(--panel);
+    box-shadow: inset -1px -1px 0 var(--line);
+  }
+  #drop {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .focus-bar,
+  .version-banner {
+    background: var(--menu);
+    box-shadow: var(--shadow-bar);
+    border-radius: 10px;
+  }
+
+  /* ---------- Menus and popovers ---------- */
+  .menu {
+    background: var(--menu);
+    border-radius: 12px;
+    box-shadow: var(--shadow-pop);
+    padding: 6px;
+  }
+  .menu button {
+    height: 28px;
+    padding: 0 10px 0 8px;
+    border-radius: 6px;
+  }
+  /* The item under the pointer is blue. */
+  .menu button:hover,
+  .menu button.open,
+  .menu button:focus {
+    background: var(--accent);
+    color: var(--on-accent, #fff);
+  }
+  .menu .hint {
+    color: var(--muted);
+  }
+  .menu button:hover .hint,
+  .menu button.open .hint,
+  .menu button:focus .hint,
+  .menu button:hover .mark,
+  .menu button.open .mark,
+  .menu button:focus .mark {
+    color: #ffffffcc;
+  }
+  .menu button:disabled {
+    color: var(--muted);
+    opacity: 0.6;
+  }
+  .menu button .mark {
+    color: var(--accent-text);
+  }
+  .menu hr {
+    border-top-color: var(--line);
+  }
+  .popover,
+  .paint-editor,
+  .font-picker,
+  .float-panel,
+  .fonts-dialog,
+  .cthread,
+  .cmention-pop,
+  .widget-bar {
+    background: var(--menu);
+    border-radius: 12px;
+    box-shadow: var(--shadow-pop);
+  }
+  .pe-head,
+  .cthread-head {
+    border-bottom-color: var(--line);
+  }
+  .pe-head select,
+  .pe-row > select,
+  .cp-mode,
+  .cp-inputs input,
+  .cp-a {
+    background: var(--panel-2);
+    border-radius: 6px;
+  }
+  .cp-inputs input:focus,
+  .cp-a:focus {
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+  }
+  .cp-sv {
+    border-radius: 6px;
+  }
+  .cp-doc {
+    border-top-color: var(--line);
+  }
+  .float-panel .fp-list button.on,
+  .cmention-item.on {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+  .float-panel .fp-list button.on .kind,
+  .cmention-item.on .cmention-mail {
+    color: var(--muted);
+  }
+  .float-panel input:not([type='checkbox']),
+  .float-panel select {
+    border-radius: 6px;
+  }
+  .float-panel input:focus,
+  .float-panel select:focus {
+    box-shadow: var(--focus-ring);
+  }
+  .fp-item.active {
+    background: var(--accent-soft);
+  }
+  .fp-item.current {
+    color: var(--accent-text);
+  }
+
+  /* The actions menu (Ctrl+K): new features grow here, not into buttons. */
+  #actions {
+    background: var(--backdrop);
+  }
+  #actions .act-card {
+    background: var(--menu);
+    border-radius: 14px;
+    box-shadow: var(--shadow-pop);
+  }
+  #actions input {
+    font-size: 15px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  #actions .act-list button {
+    height: 34px;
+    border-radius: 8px;
+  }
+  #actions .act-list button.on {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+  #actions .act-list button.on .path,
+  #actions .act-list button.on .hint {
+    color: var(--muted);
+  }
+  #actions .chip {
+    background: var(--panel-2);
+    border-radius: 6px;
+  }
+  #actions .chip.title {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  #actions .act-foot {
+    border-top: 1px solid var(--line);
+  }
+
+  /* Windows: modals, variables, compare, shortcuts, assistant, preview, plugins. */
+  .modal-back,
+  .cmp {
+    background: var(--backdrop);
+  }
+  .modal,
+  .var-window,
+  .cmp-box,
+  .ai-win,
+  .preview-win,
+  .plugin-panel {
+    background: var(--panel);
+    border-radius: 14px;
+    border: none;
+    box-shadow: var(--shadow-pop);
+  }
+  .preview-win,
+  .plugin-panel {
+    overflow: hidden;
+  }
+  .plugin-title,
+  .var-head,
+  .ai-head,
+  .cmp-head,
+  .preview-head {
+    border-bottom-color: var(--line);
+  }
+  .var-th {
+    background: var(--panel);
+  }
+  .var-coll.on,
+  .m-dest.on,
+  .citem.on,
+  .history-item.on,
+  .asset-row.current,
+  .style-item.current,
+  .merge-screen.on {
+    background: var(--accent-soft);
+  }
+  .catalog-row {
+    border-bottom-color: var(--line);
+  }
+  .ai-msg.user {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .sc-row kbd {
+    background: var(--panel-2);
+    border-color: var(--border);
+    border-radius: 5px;
+  }
+  .cmp-img,
+  .pg-preview {
+    background: repeating-conic-gradient(var(--checker-a) 0 25%, var(--checker-b) 0 50%) 0 0 / 16px 16px;
+  }
+
+  /* Notifications. */
+  .toast {
+    background: var(--menu);
+    color: var(--text);
+    border-radius: 10px;
+    box-shadow: var(--shadow-pop);
+  }
+  .toast.error {
+    background: var(--danger);
+    color: #fff;
+  }
+
+  /* ---------- Home (files) ---------- */
+  .home {
+    background: var(--bg);
+  }
+  .home-side {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    padding: 12px 8px;
+  }
+  .home-brand {
+    font-size: 15px;
+    padding: 4px 10px 14px 6px;
+  }
+  /* The brand mark and the full name on the roomy files screen. */
+  .home-brand .home-ic {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+  }
+  .home-brand .home-ic .ic {
+    width: 28px;
+    height: 28px;
+  }
+  .home-nav {
+    min-height: 32px;
+    border-radius: 6px;
+  }
+  .home-nav:hover {
+    background: var(--panel-2);
+  }
+  .home-nav.on {
+    background: var(--accent-soft);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .home-nav.on .home-ic {
+    color: var(--accent-text);
+  }
+  .home-head {
+    border-bottom-color: var(--line);
+    padding: 14px 24px;
+  }
+  .home-title {
+    font-size: 16px;
+    letter-spacing: -0.005em;
+  }
+  /* Fields on the “Background/App” backdrop use the panel color and a border (otherwise they blend in the light theme). */
+  .home-search,
+  .home-sort {
+    height: 32px;
+    border-radius: 8px;
+    background: var(--panel);
+    border-color: var(--border);
+  }
+  .home-search:focus,
+  .home-rename:focus {
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+  }
+  .home-btn {
+    height: 32px;
+    border-radius: 8px;
+  }
+  .home-grid {
+    padding: 24px;
+    gap: 20px;
+  }
+  .home-card {
+    border-radius: 12px;
+    border-color: var(--line);
+    background: var(--panel);
+    transition: border-color 0.12s, box-shadow 0.12s;
+  }
+  .home-card:hover {
+    border-color: var(--border);
+    box-shadow: 0 6px 20px #05080f2e;
+  }
+  .home-card.current {
+    border-color: var(--accent);
+  }
+  .home-thumb {
+    background: var(--panel-2);
+  }
+  .home-meta {
+    padding: 10px 12px 12px;
+  }
+  .home-name {
+    font-weight: 500;
+  }
+
+  /* ---------- Developer mode, comments, branches ---------- */
+  .dv-token,
+  .dv-select {
+    border-radius: 5px;
+  }
+  .dv-code,
+  .m-token {
+    border-radius: 8px;
+  }
+  .branch-btn.on {
+    color: var(--component);
+    background: color-mix(in srgb, var(--component) 16%, transparent);
+  }
+  .branch-ic {
+    color: var(--component);
+    background: color-mix(in srgb, var(--component) 22%, transparent);
+  }
+  .branch-here {
+    background: color-mix(in srgb, var(--component) 10%, transparent);
+  }
+  .cpin:hover,
+  .cpin.on {
+    box-shadow: 0 0 0 2px var(--accent), 0 2px 8px #0009;
+  }
+  .note.unread::after {
+    background: var(--accent);
+  }
+  .creact.on {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .cmention {
+    color: var(--accent-text);
+  }
+  .tbtn.dev-toggle.on,
+  .dv-status.ready {
+    border-color: var(--dev);
+  }
+  .dv-status.ready,
+  .dv-st,
+  .focus-status,
+  .dev-label {
+    color: var(--dev);
+  }
+}
+
+/* Light theme: no brighter code highlighting and shadows needed — its own syntax colors. */
+:root[data-ui='new'][data-theme='light']:not([data-contrast]) {
+  .hl-c {
+    color: #6b7280;
+  }
+  .hl-s {
+    color: #b45309;
+  }
+  .hl-n {
+    color: #15803d;
+  }
+  .hl-p {
+    color: #1d4ed8;
+  }
+  .hl-k {
+    color: #7e22ce;
+  }
+  .home-card:hover {
+    box-shadow: 0 6px 20px #10182814;
+  }
+  .toggle::after {
+    box-shadow: 0 1px 2px #10182833;
+  }
+}

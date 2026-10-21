@@ -1,0 +1,11 @@
+{
+  "name": "Developer mode · Access check",
+  "id": "mfp-dev-inspect-check",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["dev"],
+  "capabilities": ["inspect"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] }
+}

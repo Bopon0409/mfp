@@ -1,0 +1,47 @@
+<style>
+  body { font: 12px system-ui, sans-serif; margin: 0; padding: 10px; display: flex; flex-direction: column; gap: 8px; height: 100vh; box-sizing: border-box; }
+  .view { flex: 1; display: flex; align-items: center; justify-content: center; border-radius: 6px; overflow: hidden;
+    background: repeating-conic-gradient(#ffffff14 0 25%, transparent 0 50%) 0 0 / 16px 16px; }
+  .view img { max-width: 100%; max-height: 100%; }
+  .muted { color: var(--figma-color-text-secondary); }
+  .row { display: flex; gap: 6px; align-items: center; }
+  button, a.btn { background: var(--figma-color-bg-secondary); color: var(--figma-color-text); border: 1px solid var(--figma-color-border); border-radius: 6px; padding: 6px 10px; cursor: pointer; text-decoration: none; }
+  button.on { background: var(--figma-color-bg-brand); color: var(--figma-color-text-onbrand); border-color: transparent; }
+  a.btn { margin-left: auto; background: var(--figma-color-bg-brand); color: var(--figma-color-text-onbrand); border-color: transparent; font-weight: 600; }
+  a.btn[hidden] { display: none; }
+</style>
+<div class="view" id="view"><span class="muted">Select a layer</span></div>
+<div class="muted" id="info"></div>
+<div class="row">
+  <button data-s="1">1x</button><button data-s="2" class="on">2x</button><button data-s="3">3x</button>
+  <a class="btn" id="save" hidden>Save</a>
+</div>
+<script>
+  const view = document.getElementById('view');
+  const info = document.getElementById('info');
+  const save = document.getElementById('save');
+  for (const b of document.querySelectorAll('button[data-s]')) {
+    b.onclick = () => {
+      for (const x of document.querySelectorAll('button[data-s]')) x.classList.toggle('on', x === b);
+      parent.postMessage({ pluginMessage: { type: 'scale', value: Number(b.dataset.s) } }, '*');
+    };
+  }
+  onmessage = (e) => {
+    const m = e.data.pluginMessage;
+    if (!m) return;
+    save.hidden = m.type !== 'image';
+    if (m.type === 'empty') { view.innerHTML = '<span class="muted">Select a layer</span>'; info.textContent = ''; }
+    else if (m.type === 'busy') info.textContent = m.name + ' — rendering…';
+    else if (m.type === 'error') info.textContent = 'Error: ' + m.message;
+    else if (m.type === 'image') {
+      const url = 'data:image/png;base64,' + m.data;
+      view.innerHTML = '';
+      const img = new Image();
+      img.src = url;
+      view.append(img);
+      img.onload = () => (info.textContent = m.name + ' · ' + img.naturalWidth + '×' + img.naturalHeight + ' · ' + Math.round(m.size / 1024) + ' KB');
+      save.href = url;
+      save.download = (m.name || 'export') + (m.scale === 1 ? '' : '@' + m.scale + 'x') + '.png';
+    }
+  };
+</script>

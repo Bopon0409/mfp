@@ -1,0 +1,9 @@
+{
+  "name": "SVG from code",
+  "id": "mfp.svg-paste",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": { "allowedDomains": ["none"] }
+}

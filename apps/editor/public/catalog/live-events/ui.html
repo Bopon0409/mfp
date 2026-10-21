@@ -1,0 +1,38 @@
+<style>
+  body { font: 12px system-ui, sans-serif; margin: 0; padding: 10px; display: flex; flex-direction: column; gap: 8px; height: 100vh; box-sizing: border-box; }
+  .k { color: var(--figma-color-text-secondary); }
+  #log { flex: 1; overflow: auto; border-top: 1px solid var(--figma-color-border); padding-top: 6px; font: 11px ui-monospace, monospace; }
+  .ch { padding: 2px 0; border-bottom: 1px solid #ffffff0d; }
+  .t { font-weight: 600; }
+  .REMOTE { color: #ffcd29; }
+  .props { color: var(--figma-color-text-secondary); }
+</style>
+<div><span class="k">Page:</span> <span id="page"></span> · <span class="k">zoom</span> <span id="zoom"></span>% · <span class="k">center</span> <span id="center"></span></div>
+<div><span class="k">Selection:</span> <span id="sel"></span></div>
+<div id="log"><span class="k">Document changes will appear here</span></div>
+<script>
+  const log = document.getElementById('log');
+  let first = true;
+  onmessage = (e) => {
+    const m = e.data.pluginMessage;
+    if (!m) return;
+    if (m.type === 'state') {
+      document.getElementById('page').textContent = m.page;
+      document.getElementById('zoom').textContent = m.zoom;
+      document.getElementById('center').textContent = m.center.x + ', ' + m.center.y;
+      document.getElementById('sel').textContent = m.selection.length ? m.selection.join(', ') : '—';
+    } else if (m.type === 'changes') {
+      if (first) { log.textContent = ''; first = false; }
+      for (const c of m.items) {
+        const row = document.createElement('div');
+        row.className = 'ch';
+        row.innerHTML = '<span class="t ' + c.origin + '"></span> <span class="w"></span> <span class="props"></span>';
+        row.children[0].textContent = c.type + (c.origin === 'REMOTE' ? ' (another participant)' : '');
+        row.children[1].textContent = c.what;
+        row.children[2].textContent = c.props;
+        log.prepend(row);
+      }
+      while (log.children.length > 200) log.lastChild.remove();
+    }
+  };
+</script>

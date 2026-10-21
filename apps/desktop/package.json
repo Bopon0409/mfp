@@ -1,0 +1,14 @@
+{
+  "name": "@mfp/desktop",
+  "version": "0.3.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "node ../../scripts/tauri-build.ts",
+    "icon": "tauri icon src-tauri/app-icon.png"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}

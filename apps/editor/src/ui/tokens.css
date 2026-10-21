@@ -1,0 +1,110 @@
+/* Generated from design/interface.mfp (npm run design:tokens) — edit the design file, not this file */
+
+/* Palette · Value */
+:root[data-ui="new"]:not([data-contrast]) {
+  --gray-0: #ffffff; /* oklch(1 0 266) */
+  --gray-25: #f9fafc; /* oklch(0.985 0.003 266) */
+  --gray-50: #f3f4f7; /* oklch(0.968 0.004 266) */
+  --gray-100: #e9ebef; /* oklch(0.94 0.005 266) */
+  --gray-150: #dfe1e5; /* oklch(0.91 0.006 266) */
+  --gray-200: #d4d6db; /* oklch(0.875 0.007 266) */
+  --gray-300: #bbbec3; /* oklch(0.8 0.008 266) */
+  --gray-400: #9c9ea4; /* oklch(0.7 0.009 266) */
+  --gray-500: #7d8086; /* oklch(0.6 0.01 266) */
+  --gray-600: #606369; /* oklch(0.5 0.01 266) */
+  --gray-700: #4a4d53; /* oklch(0.42 0.011 266) */
+  --gray-750: #3d4046; /* oklch(0.37 0.011 266) */
+  --gray-800: #33353b; /* oklch(0.33 0.011 266) */
+  --gray-850: #2b2e34; /* oklch(0.3 0.011 266) */
+  --gray-875: #272a30; /* oklch(0.285 0.011 266) */
+  --gray-900: #22242a; /* oklch(0.262 0.011 266) */
+  --gray-925: #1d1f25; /* oklch(0.24 0.011 266) */
+  --gray-950: #17191f; /* oklch(0.215 0.011 266) */
+  --gray-975: #111419; /* oklch(0.19 0.011 266) */
+  --blue-100: #e7efff; /* oklch(0.95 0.03 266) */
+  --blue-200: #c6d7ff; /* oklch(0.88 0.07 266) */
+  --blue-300: #9bb9ff; /* oklch(0.79 0.12 266) */
+  --blue-400: #6c96ff; /* oklch(0.69 0.17 266) */
+  --blue-500: #4d7bfd; /* oklch(0.62 0.2 266) */
+  --blue-600: #3763ee; /* oklch(0.555 0.215 266) */
+  --blue-700: #2a51cf; /* oklch(0.49 0.2 266) */
+  --blue-800: #1f3da5; /* oklch(0.41 0.17 266) */
+  --violet-400: #ba82f5; /* oklch(0.71 0.17 305) */
+  --violet-600: #9442d9; /* oklch(0.56 0.22 305) */
+  --red-400: #f45a56; /* oklch(0.67 0.19 25) */
+  --red-600: #d92931; /* oklch(0.575 0.21 25) */
+  --green-400: #40c786; /* oklch(0.74 0.15 158) */
+  --green-600: #008b56; /* oklch(0.56 0.14 158) */
+  --amber-400: #ffb848; /* oklch(0.83 0.15 75) */
+  --amber-600: #cf8c00; /* oklch(0.69 0.15 75) */
+  --teal-400: #24c1c9; /* oklch(0.74 0.12 200) */
+  --teal-600: #00858a; /* oklch(0.56 0.11 200) */
+}
+
+/* Theme · Dark */
+:root[data-ui="new"]:not([data-contrast]) {
+  --bg: var(--gray-975); /* Behind the panels: file tabs, home, backdrops */
+  --panel: var(--gray-925); /* Side panels, windows */
+  --panel-2: var(--gray-875); /* Input fields, row hover */
+  --panel-3: var(--gray-800); /* Pressed button, field border on hover */
+  --menu: var(--gray-900); /* Menus, tooltips, popovers — above the panels */
+  --canvas: var(--gray-950); /* Empty canvas (a file page has its own color) */
+  --line: var(--gray-875); /* Between sections */
+  --border: var(--gray-750); /* Buttons, cards */
+  --text: var(--gray-25); /* Values, names */
+  --text-2: var(--gray-200); /* Labels, icons */
+  --muted: var(--gray-400); /* Hints, units, inactive */
+  --on-accent: var(--gray-0); /* Text and icons on an accent fill */
+  --accent: var(--blue-500); /* Selection, focus, primary button */
+  --accent-2: var(--blue-600); /* Primary button under the pointer */
+  --accent-soft: #4d7bfd38; /* Selected row, chosen item */
+  --accent-text: var(--blue-300); /* Links and accent text on a panel */
+  --component: var(--violet-400); /* Components and instances */
+  --danger: var(--red-400); /* Errors, deletion */
+  --dev: var(--teal-400); /* Developer mode */
+  --warning: var(--amber-400); /* Warnings */
+}
+
+/* Theme · Light */
+:root[data-ui="new"]:not([data-contrast])[data-theme="light"] {
+  --bg: var(--gray-50); /* Behind the panels: file tabs, home, backdrops */
+  --panel: var(--gray-0); /* Side panels, windows */
+  --panel-2: var(--gray-50); /* Input fields, row hover */
+  --panel-3: var(--gray-150); /* Pressed button, field border on hover */
+  --menu: var(--gray-0); /* Menus, tooltips, popovers — above the panels */
+  --canvas: var(--gray-100); /* Empty canvas (a file page has its own color) */
+  --line: var(--gray-100); /* Between sections */
+  --border: var(--gray-200); /* Buttons, cards */
+  --text: var(--gray-975); /* Values, names */
+  --text-2: var(--gray-700); /* Labels, icons */
+  --muted: var(--gray-500); /* Hints, units, inactive */
+  --on-accent: var(--gray-0); /* Text and icons on an accent fill */
+  --accent: var(--blue-600); /* Selection, focus, primary button */
+  --accent-2: var(--blue-700); /* Primary button under the pointer */
+  --accent-soft: #3763ee1f; /* Selected row, chosen item */
+  --accent-text: var(--blue-600); /* Links and accent text on a panel */
+  --component: var(--violet-600); /* Components and instances */
+  --danger: var(--red-600); /* Errors, deletion */
+  --dev: var(--teal-600); /* Developer mode */
+  --warning: var(--amber-600); /* Warnings */
+}
+
+/* Sizes · Value */
+:root[data-ui="new"]:not([data-contrast]) {
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 8px;
+  --radius-xl: 12px;
+  --radius-xxl: 16px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --field-h: 28px;
+  --row-h: 32px;
+  --head-h: 48px;
+  --left-w: 248px;
+  --right-w: 280px;
+}

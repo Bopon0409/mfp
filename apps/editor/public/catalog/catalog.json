@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "plugins": [
+    {
+      "id": "mfp.rename-layers",
+      "name": "Rename layers",
+      "description": "Find and replace in the names of selected layers or the whole page. Quick action: Ctrl+K → “Rename layers”, with name suggestions.",
+      "author": "MFP",
+      "license": "MIT",
+      "url": "rename-layers/"
+    },
+    {
+      "id": "mfp.svg-paste",
+      "name": "SVG from code",
+      "description": "Paste SVG code (an icon, a logo) as layers: vectors, groups, gradients, masks.",
+      "author": "MFP",
+      "license": "MIT",
+      "url": "svg-paste/"
+    },
+    {
+      "id": "mfp.export-png",
+      "name": "Export PNG",
+      "description": "Preview the selected layer at 1x, 2x or 3x and save the file.",
+      "author": "MFP",
+      "license": "MIT",
+      "url": "export-png/"
+    },
+    {
+      "id": "mfp.live-events",
+      "name": "What's happening",
+      "description": "Page, selection, zoom and the stream of document changes — live (plugin events).",
+      "author": "MFP",
+      "license": "MIT",
+      "url": "live-events/"
+    },
+    {
+      "id": "mfp.lorem",
+      "name": "Placeholder text",
+      "description": "Fill text layers with placeholder text in English or Russian: as many paragraphs as you need.",
+      "author": "MFP",
+      "license": "MIT",
+      "url": "lorem/"
+    }
+  ]
+}

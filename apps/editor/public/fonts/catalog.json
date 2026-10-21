@@ -1,0 +1,397 @@
+{
+ "source": "Fontsource (SIL OFL 1.1)",
+ "families": {
+  "Fira Sans": {
+   "id": "fira-sans",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Golos Text": {
+   "id": "golos-text",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "IBM Plex Sans": {
+   "id": "ibm-plex-sans",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Inter": {
+   "id": "inter",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "JetBrains Mono": {
+   "id": "jetbrains-mono",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Lora": {
+   "id": "lora",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Manrope": {
+   "id": "manrope",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Montserrat": {
+   "id": "montserrat",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Noto Sans": {
+   "id": "noto-sans",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Noto Serif": {
+   "id": "noto-serif",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Nunito": {
+   "id": "nunito",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Onest": {
+   "id": "onest",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Open Sans": {
+   "id": "open-sans",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Playfair Display": {
+   "id": "playfair-display",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "PT Sans": {
+   "id": "pt-sans",
+   "normal": [
+    400,
+    700
+   ],
+   "italic": [
+    400,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "PT Serif": {
+   "id": "pt-serif",
+   "normal": [
+    400,
+    700
+   ],
+   "italic": [
+    400,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Raleway": {
+   "id": "raleway",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Roboto": {
+   "id": "roboto",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Rubik": {
+   "id": "rubik",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Source Sans 3": {
+   "id": "source-sans-3",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  },
+  "Unbounded": {
+   "id": "unbounded",
+   "normal": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "italic": [],
+   "subsets": [
+    "cyrillic",
+    "latin",
+    "latin-ext"
+   ]
+  }
+ }
+}

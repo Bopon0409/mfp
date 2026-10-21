@@ -1,0 +1,12 @@
+{
+  "name": "@mfp/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "fractional-indexing": "^3.2.0"
+  }
+}

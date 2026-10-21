@@ -1,0 +1,7 @@
+/* The “Video” tab in “Image enhancements”: everything else is the shared ups-* classes */
+.vid-player { max-width: calc(100% - 48px); max-height: calc(100% - 96px); margin-bottom: 48px; background: #000; box-shadow: 0 0 0 1px var(--line), 0 12px 32px #0006; }
+.vid-player[hidden] { display: none; }
+.vid-row { display: flex; align-items: center; gap: 8px; }
+.vid-range { flex: 1; min-width: 0; accent-color: var(--accent); }
+.vid-time { flex: none; min-width: 48px; text-align: right; color: var(--text-2); font-size: 11px; font-variant-numeric: tabular-nums; }
+.vid-body .ups-section .ups-btn:disabled { opacity: 0.45; cursor: default; }

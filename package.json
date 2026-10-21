@@ -1,0 +1,31 @@
+{
+  "name": "mfp",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p apps/viewer/tsconfig.json --noEmit && tsc -p apps/editor/tsconfig.json --noEmit && tsc -p apps/cli/tsconfig.json --noEmit && tsc -p apps/server/tsconfig.json --noEmit",
+    "dev:editor": "npm run dev -w @mfp/editor",
+    "fig:inspect": "node packages/io-figma/scripts/inspect.ts",
+    "dev:viewer": "npm run dev -w @mfp/viewer",
+    "mfp": "node apps/cli/src/main.ts",
+    "perf": "node --expose-gc --max-old-space-size=8192 scripts/perf-budgets.ts",
+    "e2e:desktop": "node scripts/e2e-desktop.ts",
+    "corpus": "node --max-old-space-size=12288 scripts/corpus.ts",
+    "design:tokens": "node scripts/design-tokens.ts",
+    "dev:server": "node apps/server/src/main.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

@@ -1,0 +1,93 @@
+# MFP self-host: the server (with the editor), PostgreSQL and MinIO (S3). Start:
+#   cp .env.example .env   # passwords and address
+#   docker compose up -d   # → http://localhost:8080
+# Details: docs/self-host.md.
+
+services:
+  mfp:
+    build: .
+    image: mfp:latest
+    ports:
+      - "${MFP_PORT:-8080}:8080"
+    environment:
+      DATABASE_URL: postgres://mfp:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/mfp
+      S3_ENDPOINT: http://minio:9000
+      S3_BUCKET: mfp
+      S3_ACCESS_KEY: ${MINIO_ROOT_USER:-mfp}
+      S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD in .env}
+      MFP_APP_URL: ${MFP_APP_URL:-http://localhost:8080/}
+      MFP_PUBLIC_URL: ${MFP_PUBLIC_URL:-}
+      # password — sign-in with username and password (no SMTP); email — codes by email.
+      MFP_AUTH: ${MFP_AUTH:-email}
+      # off — closed network: editors of this server never go to the internet.
+      MFP_NETWORK: ${MFP_NETWORK:-on}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-}
+      # Enterprise (ee/): SSO, SCIM, audit — empty = off.
+      OIDC_ISSUER: ${OIDC_ISSUER:-}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-}
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET:-}
+      OIDC_NAME: ${OIDC_NAME:-}
+      OIDC_DOMAINS: ${OIDC_DOMAINS:-}
+      SCIM_TOKEN: ${SCIM_TOKEN:-}
+      MFP_AUDIT: ${MFP_AUDIT:-}
+    volumes:
+      - mfp-data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: mfp
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: mfp
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mfp -d mfp"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  # S3 storage. MinIO is a separate program (AGPL); MFP only talks to it over the S3 API;
+  # any S3-compatible storage works (cloud, SeaweedFS, Ceph) — then this and the next service are not needed.
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address :9001
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-mfp}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD in .env}
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  # Once: a bucket for MFP.
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-mfp}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    entrypoint: ["sh", "-c", "mc alias set local http://minio:9000 \"$$MINIO_ROOT_USER\" \"$$MINIO_ROOT_PASSWORD\" && mc mb --ignore-existing local/mfp"]
+    restart: "no"
+
+volumes:
+  mfp-data:
+  db-data:
+  minio-data:

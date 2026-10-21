@@ -1,0 +1,14 @@
+<style>body{font:14px system-ui;padding:16px}p{line-height:1.6}button{padding:8px}</style>
+<h2>Developer mode check</h2>
+<p id="result">Reading the document…</p>
+<button onclick="parent.postMessage({pluginMessage:'check'},'*')">Check that editing is blocked</button>
+<script>
+onmessage = e => {
+  const m=e.data.pluginMessage;
+  if (!m) return;
+  document.getElementById('result').textContent = m.mode + ' · Layer: ' + m.name +
+    ' · Creating a shape: ' + (m.blocked ? 'blocked' : 'ALLOWED') +
+    ' · Metadata: ' + (m.metadata ? 'saved' : 'no layer') + ' · Layers: ' + m.count;
+};
+parent.postMessage({pluginMessage:'check'},'*');
+</script>

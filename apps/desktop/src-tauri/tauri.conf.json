@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "MFP",
+  "version": "0.3.1",
+  "identifier": "app.mfp.editor",
+  "build": {
+    "devUrl": "http://localhost:5174",
+    "frontendDist": "../../editor/dist",
+    "beforeBuildCommand": {
+      "script": "npm run build && node ../../scripts/build-office.ts",
+      "cwd": "../../editor"
+    }
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "MFP",
+        "width": 1440,
+        "height": 900,
+        "minWidth": 900,
+        "minHeight": 560,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "resources": { "office/": "office/" },
+    "windows": {
+      "nsis": {
+        "languages": ["English", "Russian"],
+        "displayLanguageSelector": true,
+        "installerHooks": "./windows/hooks.nsh"
+      }
+    },
+    "targets": "all",
+    "publisher": "MFP",
+    "shortDescription": "Редактор интерфейсов",
+    "longDescription": "MFP — редактор интерфейсов: файлы .mfp, импорт .fig, плагины в формате Figma. Figma — товарный знак Figma, Inc.; MFP с ней не связан.",
+    "copyright": "© 2026 MFP",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "fileAssociations": [
+      {
+        "ext": [
+          "mfp"
+        ],
+        "name": "MFP",
+        "description": "Файл MFP",
+        "role": "Editor",
+        "mimeType": "application/x-mfp"
+      },
+      {
+        "ext": [
+          "fig"
+        ],
+        "name": "Fig",
+        "description": "Файл .fig",
+        "role": "Viewer"
+      }
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDREMDI0NTUyQ0E3NTNDOEEKUldTS1BIWEtVa1VDVFpZZExLdjlKUkJrd21tRXgxUXZ2NkVxbnVOMjl0Y1VndDZWaW45MGZyOEUK",
+      "endpoints": [],
+      "dangerousInsecureTransportProtocol": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Окно редактора: заголовок, закрытие после записи файлов, окна показа, окна-вопросы (окна выбора файлов — командами оболочки, pick_open / pick_save), обновление и перезапуск",
+  "windows": ["main", "player-*"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-set-title",
+    "core:window:allow-destroy",
+    "core:window:allow-hide",
+    "core:window:allow-show",
+    "core:window:allow-set-focus",
+    "core:window:allow-close",
+    "core:webview:allow-create-webview-window",
+    "dialog:allow-ask",
+    "dialog:allow-confirm",
+    "dialog:allow-message",
+    "updater:default",
+    "process:allow-restart"
+  ]
+}

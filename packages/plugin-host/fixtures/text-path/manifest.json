@@ -1,0 +1,8 @@
+{
+  "name": "Text on path · API check",
+  "id": "mfp-text-path-sample",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "networkAccess": { "allowedDomains": ["none"] }
+}

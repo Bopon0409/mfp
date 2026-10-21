@@ -1,0 +1,8 @@
+<style>body{font:13px system-ui;margin:14px;color:var(--figma-color-text);background:var(--figma-color-bg)}button{margin:4px;padding:6px}</style>
+<p>Without a boundary, Undo removes both shapes. With a boundary — only the circle first.</p>
+<button id="together">Pair in one step</button><button id="split">Pair in two steps</button><button id="close">Close</button>
+<script>
+document.getElementById('together').onclick=()=>parent.postMessage({pluginMessage:{type:'pair',split:false}},'*');
+document.getElementById('split').onclick=()=>parent.postMessage({pluginMessage:{type:'pair',split:true}},'*');
+document.getElementById('close').onclick=()=>parent.postMessage({pluginMessage:{type:'close'}},'*');
+</script>

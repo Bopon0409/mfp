@@ -1,0 +1,12 @@
+{
+  "name": "Rename layers",
+  "id": "mfp.rename-layers",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "parameters": [
+    { "name": "Find", "key": "find", "description": "part of a layer name", "allowFreeform": true },
+    { "name": "Replace with", "key": "replace", "allowFreeform": true, "optional": true }
+  ],
+  "networkAccess": { "allowedDomains": ["none"] }
+}

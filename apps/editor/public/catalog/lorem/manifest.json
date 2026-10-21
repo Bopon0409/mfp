@@ -1,0 +1,13 @@
+{
+  "name": "Placeholder text",
+  "id": "mfp.lorem",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "parameters": [
+    { "name": "Language", "key": "lang", "optional": true },
+    { "name": "Paragraphs", "key": "paragraphs", "allowFreeform": true, "optional": true }
+  ],
+  "parameterOnly": false,
+  "networkAccess": { "allowedDomains": ["none"] }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Codegen sample",
+  "id": "mfp-sample-codegen",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["dev"],
+  "capabilities": ["codegen"],
+  "codegenLanguages": [
+    { "label": "Description (JSON)", "value": "json" },
+    { "label": "React (sample)", "value": "react" }
+  ]
+}

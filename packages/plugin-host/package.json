@@ -1,0 +1,16 @@
+{
+  "name": "@mfp/plugin-host",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./browser": "./src/browser/index.ts"
+  },
+  "dependencies": {
+    "@mfp/core": "*",
+    "@mfp/editing": "*",
+    "quickjs-emscripten-core": "^0.32.0",
+    "@jitl/quickjs-wasmfile-release-sync": "^0.32.0"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@mfp/editor",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@mfp/core": "*",
+    "@mfp/editing": "*",
+    "@mfp/io-figma": "*",
+    "@mfp/layout": "*",
+    "@mfp/plugin-host": "*",
+    "@mfp/renderer": "*",
+    "@mfp/sync": "*",
+    "@tauri-apps/api": "^2.12.1",
+    "@tauri-apps/plugin-dialog": "^2.8.1",
+    "@tauri-apps/plugin-process": "^2.4.0",
+    "@tauri-apps/plugin-updater": "^2.13.1",
+    "canvaskit-wasm": "^0.42.0",
+    "loro-crdt": "^1.16.4",
+    "onnxruntime-web": "1.30.0",
+    "opentype.js": "^2.0.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.186.0",
+    "pdfjs-dist": "^5.7.284",
+    "vite": "^8.3.2"
+  }
+}

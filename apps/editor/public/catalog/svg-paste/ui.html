@@ -1,0 +1,18 @@
+<style>
+  body { font: 12px system-ui, sans-serif; margin: 0; padding: 10px; display: flex; flex-direction: column; gap: 8px; height: 100vh; box-sizing: border-box; }
+  textarea { flex: 1; resize: none; background: var(--figma-color-bg-secondary); color: var(--figma-color-text); border: 1px solid var(--figma-color-border); border-radius: 6px; padding: 8px; font: 11px ui-monospace, monospace; }
+  .row { display: flex; gap: 8px; }
+  input { flex: 1; background: var(--figma-color-bg-secondary); color: var(--figma-color-text); border: 1px solid var(--figma-color-border); border-radius: 6px; padding: 6px 8px; }
+  button { background: var(--figma-color-bg-brand); color: var(--figma-color-text-onbrand); border: 0; border-radius: 6px; padding: 6px 14px; font-weight: 600; cursor: pointer; }
+</style>
+<textarea id="svg" spellcheck="false"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4d7bfd"/><stop offset="1" stop-color="#ba82f5"/></linearGradient></defs>
+  <circle cx="12" cy="12" r="11" fill="url(#g)"/>
+  <path d="M7 12.5l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></textarea>
+<div class="row"><input id="name" placeholder="Layer name (optional)" /><button id="go">Paste</button></div>
+<script>
+  document.getElementById('go').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'insert', svg: document.getElementById('svg').value, name: document.getElementById('name').value.trim() } }, '*');
+  };
+</script>

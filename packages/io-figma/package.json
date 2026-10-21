@@ -1,0 +1,16 @@
+{
+  "name": "@mfp/io-figma",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./node": "./src/node-source.ts"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "fzstd": "^0.1.1",
+    "kiwi-schema": "^0.5.0",
+    "@mfp/core": "*"
+  }
+}

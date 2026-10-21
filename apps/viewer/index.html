@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MFP Viewer</title>
+    <style>
+      :root {
+        --bg: #17191f;
+        --panel: #22242a;
+        --text: #e6e6e6;
+        --muted: #9a9a9a;
+        --accent: #4c8dff;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font: 13px system-ui, sans-serif; overflow: hidden; }
+      #bar { position: fixed; inset: 0 0 auto 0; height: 40px; display: flex; gap: 8px; align-items: center; padding: 0 12px; background: var(--panel); border-bottom: 1px solid #000; z-index: 2; }
+      #bar select, #bar button, #bar label { background: #2b2e34; color: var(--text); border: 1px solid #444; border-radius: 4px; height: 26px; padding: 0 8px; font: inherit; }
+      #bar button:hover { border-color: var(--accent); }
+      #bar .spacer { flex: 1; }
+      #stats { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+      #canvas { position: fixed; top: 40px; left: 0; width: 100vw; height: calc(100vh - 40px); display: block; cursor: grab; }
+      #canvas.dragging { cursor: grabbing; }
+      #status { position: fixed; left: 12px; bottom: 12px; color: var(--muted); z-index: 2; }
+      #drop { position: fixed; inset: 40px 0 0 0; display: none; align-items: center; justify-content: center; font-size: 18px; background: rgba(76, 141, 255, 0.15); border: 2px dashed var(--accent); z-index: 3; }
+      body.dragover #drop { display: flex; }
+      #toasts { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%); display: flex; flex-direction: column; gap: 6px; z-index: 5; align-items: center; }
+      .toast { background: #000c; color: #fff; padding: 8px 14px; border-radius: 6px; max-width: 70vw; }
+      .toast.error { background: #b3261ecc; }
+      .plugin-panel { position: fixed; right: 16px; top: 56px; background: var(--panel); border: 1px solid #000; border-radius: 8px; box-shadow: 0 8px 24px #0008; z-index: 4; overflow: hidden; }
+      .plugin-title { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; font-weight: 600; border-bottom: 1px solid #000; }
+      .plugin-title button { background: none; border: none; color: var(--text); font-size: 16px; cursor: pointer; }
+      .plugin-panel iframe { display: block; border: 0; background: var(--panel); }
+    </style>
+  </head>
+  <body>
+    <div id="bar">
+      <strong>MFP</strong>
+      <select id="file" title="Файл из fixtures/"></select>
+      <label>Открыть .fig… <input id="upload" type="file" accept=".fig" hidden /></label>
+      <select id="page" title="Страница"></select>
+      <button id="fit" title="Показать всё (Shift+1)">Вписать</button>
+      <button id="stress" title="Спайк A: 100 000 прямоугольников">Стресс 100k</button>
+      <button id="bench" title="Автоматический прогон pan/zoom на 3 секунды">Бенчмарк</button>
+      <button id="playground" title="Пустой документ для запуска плагинов">Плагины</button>
+      <select id="plugin" title="Пример плагина в формате Figma" hidden></select>
+      <label id="sideload-label" hidden title="Выберите manifest.json, code.js и ui.html своего плагина">Свой плагин… <input id="sideload" type="file" multiple hidden /></label>
+      <span class="spacer"></span>
+      <span id="stats"></span>
+    </div>
+    <canvas id="canvas"></canvas>
+    <div id="status">Загрузка CanvasKit…</div>
+    <div id="toasts"></div>
+    <div id="drop">Отпустите .fig, чтобы открыть</div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "@mfp/viewer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@mfp/io-figma": "*",
+    "@mfp/plugin-host": "*",
+    "@mfp/renderer": "*",
+    "canvaskit-wasm": "^0.42.0"
+  },
+  "devDependencies": {
+    "vite": "^8.3.2"
+  }
+}
